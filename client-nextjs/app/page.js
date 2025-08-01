@@ -151,6 +151,14 @@ export default function Home() {
             >
               Damage {sortBy === 'damage' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
+            <button
+              onClick={() => handleSortChange('collectorNumber')}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                sortBy === 'collectorNumber' ? 'bg-gray-800 text-white' : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            >
+              Card # {sortBy === 'collectorNumber' && (sortOrder === 'asc' ? '↑' : '↓')}
+            </button>
           </div>
         </div>
       </div>

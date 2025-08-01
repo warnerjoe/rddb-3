@@ -77,8 +77,8 @@ const Card = ({ card }) => {
   };
 
   return (
-    <div className="relative" style={{...getBackgroundStyle(), width: '300px', height: '420px'}}>
-      <div className="border-4 border-black h-full flex flex-col">
+    <div className="relative rounded-lg" style={{...getBackgroundStyle(), width: '300px', height: '420px'}}>
+      <div className="border-8 border-black h-full flex flex-col rounded-lg overflow-hidden">
         {/* Header with name, type line, and fortitude */}
         <div className="flex px-3 pt-2 pb-2">
           <div className="flex-1">
@@ -95,7 +95,7 @@ const Card = ({ card }) => {
 
         {/* Image Section - metallic border effect */}
         <div className="px-3">
-          <div className="relative h-24 bg-gray-800 p-1 rounded-sm" style={{
+          <div className="relative h-32 bg-gray-800 p-1 rounded-sm" style={{
             background: 'linear-gradient(145deg, #e0e0e0, #888888)',
             boxShadow: 'inset 2px 2px 3px rgba(255,255,255,0.6), inset -2px -2px 3px rgba(0,0,0,0.6)'
           }}>
@@ -111,17 +111,17 @@ const Card = ({ card }) => {
           </div>
         </div>
 
-        {/* Card Text - fills remaining space */}
-        <div className="px-3 py-2 flex-1">
-          <p className="text-xs leading-tight text-black">{card.cardText}</p>
-          {card.flavorText && (
-            <p className="text-xs italic text-black mt-2">"{card.flavorText}"</p>
-          )}
-        </div>
-
-        {/* Bottom section with damage box */}
-        <div className="px-3 pb-3 flex justify-end">
-          <div className="bg-black text-white px-3 py-1 text-center">
+        {/* Card Text - fills remaining space with damage box positioned absolutely */}
+        <div className="px-3 py-2 flex-1 relative">
+          <div className="pr-20">
+            <p className="text-xs leading-tight text-black">{card.cardText}</p>
+            {card.flavorText && (
+              <p className="text-xs italic text-black mt-2">"{card.flavorText}"</p>
+            )}
+          </div>
+          
+          {/* Damage box - absolutely positioned in bottom right */}
+          <div className="absolute bottom-2 right-3 bg-black text-white px-3 py-1 text-center">
             <div className="text-xs font-bold">Damage</div>
             <div className="text-2xl font-bold">{card.damage}</div>
           </div>
