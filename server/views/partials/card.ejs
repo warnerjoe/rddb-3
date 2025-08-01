@@ -1,0 +1,89 @@
+<li class="card">
+    <section class="card-container">
+        <section class="card-row" id="header-row">
+            <!-- Card Name / Type -->
+            <section>
+                <section>
+                    <p><%= card.name %></p>
+                </section>
+                <section>
+                    <%= card.cardType.map((type) => {
+                        if (type === 'Maneuver') {
+                            return card.maneuverType;
+                        } else if (type === 'Reversal') {
+                            return 'Reversal: ' + card.reversalType;
+                        } else {
+                            return type;
+                        }
+                    }).join(' / '); %>
+                    
+                    <% if (card.subType && (card.subType.length - 1 > -1)) { %>
+                        <span>: <%= card.subType.join(": ") %></span>
+                    <% } %>
+                </section>
+            </section>
+            
+            <!-- Fortitude -->
+            <section>
+                <span>F: <%= card.fortitude %></span> 
+            </section>
+        </section>
+
+        <section class="card-row" id="image-row">
+            <!-- Image -->
+            <section>
+                <img src="./images/omega-knee.jpg" style="max-width: 25%"> 
+            </section>
+
+            <!-- Superstar Logo --> 
+            <section>
+                <% if (card.superstarLogo.length - 1 > -1) { %>
+                    (<%= card.superstarLogo %> EXCLUSIVE)
+                <% } %>
+            </section>
+
+            <!-- Rarity -->
+            <section></section>
+        </section>
+
+        <section class="card-row" id="text-row">
+            <!-- Card text -->
+            <section>
+                <p><%= card.cardText%></p>
+            </section>
+
+            <!-- Rarity / Unique / SV -->
+            <section>
+                <section>
+                    <p><%=card.rarity %></p>
+                </section>
+                <section>
+                    <% if (card.unique) { %>
+                        <p>Unique</p>
+                    <% } %>
+                </section>
+                <section>
+                    <span><%= card.stunValue > 0 ? `(${card.stunValue} SV)` : '' %></span>
+                </section>
+            </section>
+        </section>
+
+        <section class="card-row" id="footer-row">
+            <!-- Flavor / Set Number -->
+            <section>
+                <section>
+                    <p><i><%= card.flavorText%></i></p>
+                </section>
+
+                <section>
+                    <p><%= String(card.collectorNumber).padStart(3, '0') + " - " + card.setName %></p>
+                </section>
+            </section>
+
+            <!-- Damage -->
+            <section>
+                <p>D: <%= card.damage %> </p>
+            </section>
+        </section>
+    </section>
+</li>

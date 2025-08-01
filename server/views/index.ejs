@@ -1,0 +1,13 @@
+<!-- index.ejs -->
+    <%- include('partials/header') %>
+    <h2>The Cards</h2>
+
+    <ul class="cards">
+        <% cards.forEach(function(card) { %>
+            <%- include('partials/card', { card: card }) %>
+        <% }); %>
+    </ul>
+
+    <div id="message"></div>
+
+    <%- include('partials/footer') %>
