@@ -33,6 +33,11 @@ app.use(cors({
   ]
 }));
 
+// Health check route
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK', message: 'Server is running' });
+});
+
 // Routes
 // / - GET - RENDERS ALL CARDS TO EJS VIEW
 app.get('/', (req, res) => {
@@ -155,8 +160,10 @@ mongoose.connect(process.env.MONGO_DB_URI, { dbName: 'raw-deal-app' })
         console.log('Connected to Database');
 
         const PORT = process.env.PORT || 5000;
-        app.listen(PORT, '0.0.0.0', () => {
-            console.log(`Server running on port ${PORT}`);
+        const HOST = process.env.HOST || '0.0.0.0';
+        
+        app.listen(PORT, HOST, () => {
+            console.log(`Server running on ${HOST}:${PORT}`);
         });
     })
     .catch(error => console.error(error));
