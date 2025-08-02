@@ -173,7 +173,7 @@ export default function Home() {
             Showing {cards.length} of {pagination.totalItems} cards
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
             {cards.map(card => (
               <Card key={card._id} card={card} />
             ))}
