@@ -156,10 +156,26 @@ mongoose.connect(process.env.MONGO_DB_URI, { dbName: 'raw-deal-app' })
         console.log('Connected to Database');
 
         const PORT = process.env.PORT || 5000;
-        const HOST = process.env.HOST || '0.0.0.0';
         
-        app.listen(PORT, HOST, () => {
-            console.log(`Server running on ${HOST}:${PORT}`);
+        const server = app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+        
+        // Handle server errors
+        server.on('error', (error) => {
+            console.error('Server error:', error);
+        });
+        
+        // Graceful shutdown
+        process.on('SIGTERM', () => {
+            console.log('SIGTERM received, shutting down gracefully');
+            server.close(() => {
+                mongoose.connection.close();
+                process.exit(0);
+            });
         });
     })
-    .catch(error => console.error(error));
+    .catch(error => {
+        console.error('Database connection error:', error);
+        process.exit(1);
+    });
