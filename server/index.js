@@ -39,13 +39,9 @@ app.get('/health', (req, res) => {
 });
 
 // Routes
-// / - GET - RENDERS ALL CARDS TO EJS VIEW
+// / - GET - Simple health check for Railway
 app.get('/', (req, res) => {
-    Card.find()
-        .then(results => {
-            res.render('index.ejs', { cards: results });
-        })
-        .catch(error => console.error(error));
+    res.status(200).json({ status: 'OK', message: 'RDDB API Server is running', timestamp: new Date().toISOString() });
 });
 
 // /api/cards - GET - RETURNS ALL CARDS AS JSON with pagination, search, and filtering
