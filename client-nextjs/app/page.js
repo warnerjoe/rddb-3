@@ -50,11 +50,16 @@ export default function Home() {
       };
 
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      console.log('API URL:', apiUrl);
+      console.log('Making request to:', `${apiUrl}/api/cards`);
+      
       const response = await axios.get(`${apiUrl}/api/cards`, { params });
+      console.log('Response received:', response.data);
       setCards(response.data.cards);
       setPagination(response.data.pagination);
     } catch (error) {
       console.error('Error fetching the card data:', error);
+      console.error('Error details:', error.response?.data, error.response?.status);
     } finally {
       setLoading(false);
     }
@@ -88,6 +93,12 @@ export default function Home() {
     <main className="container mx-auto px-4 py-8">
       <div className="mb-8 space-y-4">
         <h1 className="text-3xl font-bold text-center">Card Database</h1>
+        
+        {/* Debug info */}
+        <div className="bg-gray-100 p-4 rounded text-sm">
+          <p><strong>API URL:</strong> {process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}</p>
+          <p><strong>Environment:</strong> {process.env.NODE_ENV}</p>
+        </div>
         
         <form onSubmit={handleSearchSubmit} className="flex gap-2 max-w-md mx-auto">
           <input
