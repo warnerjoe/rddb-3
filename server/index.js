@@ -29,6 +29,7 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:3001', 
     'https://rddb-3.vercel.app',
+    'https://rddb-3-99qnu2d8d-warnerjoes-projects.vercel.app',
     'https://rddb-3-production.up.railway.app'
   ]
 }));
