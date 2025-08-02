@@ -24,7 +24,13 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001', 
+    'https://rddb-3.vercel.app'
+  ]
+}));
 
 // Routes
 // / - GET - RENDERS ALL CARDS TO EJS VIEW
