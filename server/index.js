@@ -28,7 +28,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:3001', 
-    'https://rddb-3.vercel.app'
+    'https://rddb-3.vercel.app',
+    'https://rddb-3-production.up.railway.app'
   ]
 }));
 
