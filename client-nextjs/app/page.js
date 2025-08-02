@@ -25,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchCards();
-  }, [fetchCards]);
+  }, [pagination.currentPage, search, selectedType, sortBy, sortOrder]);
 
   const fetchCardTypes = async () => {
     try {
@@ -56,7 +56,7 @@ export default function Home() {
       const response = await axios.get(`${apiUrl}/api/cards`, { params });
       console.log('Response received:', response.data);
       setCards(response.data.cards);
-      setPagination(response.data.pagination);
+      setPagination(prev => ({ ...prev, ...response.data.pagination }));
     } catch (error) {
       console.error('Error fetching the card data:', error);
       console.error('Error details:', error.response?.data, error.response?.status);
