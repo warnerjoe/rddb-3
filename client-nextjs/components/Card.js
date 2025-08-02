@@ -116,7 +116,7 @@ const Card = ({ card }) => {
           <div className="pr-20">
             <p className="text-xs leading-tight text-black">{card.cardText}</p>
             {card.flavorText && (
-              <p className="text-xs italic text-black mt-2">"{card.flavorText}"</p>
+              <p className="text-xs italic text-black mt-2">&ldquo;{card.flavorText}&rdquo;</p>
             )}
           </div>
           

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Card from '../components/Card';
 
@@ -25,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchCards();
-  }, [pagination.currentPage, search, selectedType, sortBy, sortOrder]);
+  }, [fetchCards]);
 
   const fetchCardTypes = async () => {
     try {
@@ -37,7 +37,7 @@ export default function Home() {
     }
   };
 
-  const fetchCards = async () => {
+  const fetchCards = useCallback(async () => {
     setLoading(true);
     try {
       const params = {
@@ -63,7 +63,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [pagination.currentPage, pagination.itemsPerPage, search, selectedType, sortBy, sortOrder]);
 
   const handlePageChange = (newPage) => {
     setPagination(prev => ({ ...prev, currentPage: newPage }));
